@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Унаж буй зүрхнүүд 💕</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(180deg, #ffe6f0, #fff);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Arial", sans-serif;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff4d6d;
+      text-shadow: 0 0 10px #ff9db5;
+      font-size: 3rem;
+      z-index: 2;
+    }
+
+    .heart {
+      position: absolute;
+      top: -50px;
+      color: #ff4d6d;
+      font-size: 20px;
+      animation: fall linear forwards;
+      opacity: 0.9;
+      filter: drop-shadow(0 0 4px #ff85a2);
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* Дарахад гарч ирэх том зүрх */
+    .big-heart {
+      position: absolute;
+      font-size: 8rem;
+      color: #ff2e63;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      animation: pop 0.6s ease-out forwards;
+      filter: drop-shadow(0 0 10px #ff8ca3);
+      z-index: 3;
+    }
+
+    @keyframes pop {
+      0% { transform: translate(-50%, -50%) scale(0); opacity: 0.7; }
+      60% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+      100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Хайртай шүү! 💖</h1>
+
+  <audio id="bgMusic" autoplay loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_15ba9fdf8c.mp3?filename=romantic-background-112194.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Зүрх үүсгэх функц
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = Math.random() * 30 + 15 + "px";
+      heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }
+
+    // Эхний зүрхнүүдийг үүсгэх
+    for (let i = 0; i < 20; i++) {
+      setTimeout(createHeart, i * 200);
+    }
+
+    // Тогтмол шинэ зүрх
+    setInterval(createHeart, 700);
+
+    // Хулгана дарахад том зүрх гаргах
+    document.body.addEventListener("click", (e) => {
+      const bigHeart = document.createElement("div");
+      bigHeart.classList.add("big-heart");
+      bigHeart.innerText = "💖";
+      bigHeart.style.left = e.clientX + "px";
+      bigHeart.style.top = e.clientY + "px";
+      document.body.appendChild(bigHeart);
+      setTimeout(() => bigHeart.remove(), 600);
+    });
+  </script>
+
+</body>
+</html>
